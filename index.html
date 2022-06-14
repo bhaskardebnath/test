@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/jquery-331.min.js"></script>
+  <script src="js/fontawesome.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="font-awsome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="styles/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Dream Trip.com</title>
+  <script>
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+<script>
+  $(document).ready(function() {
+      //called when key is pressed in textbox
+      $("#quantity").keypress(function(e) {
+          //if the letter is not digit then display error and don't type anything
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+              //display error message
+              $("#errmsg").html("Please enter a valid phone number").show().fadeOut("slow");
+              return false;
+          }
+      });
+  });
+</script>
+</head>
+<body>
+
+<!-- Modal Login -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="ModalTitle">Log in</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <form action="#" method="post" data-validate="parsley" style="padding: 30px">
+              <div class="form-group" style="padding-bottom: 13px">
+                  <label for="InputEmail1" id="labelForLogin">Email or 10 digit phone number</label>
+                  <input type="email" class="form-control form-control-sm" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter your email" required>
+              </div>
+              <div class="form-group" style="padding-bottom: 13px">
+                  <label for="InputPassword" id="labelForLogin">Password</label><a href="#" class="pull-right" for="InputPassword" id="labelForLogin">Forgot Password?</a>
+                  <input type="password" class="form-control form-control-sm" id="InputPassword" placeholder="Enter password" required>
+              </div>
+              <a href="#" class="pull-left" for="InputPassword" id="labelForLogin" data-toggle="modal" data-target="#exampleModalCenter">Register for new account</a>
+              <button type="submit" class="btn rounded-0 pull-right" style="background:  #3392f3; color:seashell">Submit</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+<!-- Modal signup -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Create Your Account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <form action="#" method="post" data-validate="parsley" style="padding: 30px">
+              <div class="form-group accountCreateForm" style="padding-bottom: 13px">
+                  <input type="email" class="form-control createAccountForm" aria-describedby="email" placeholder="Enter your email address" required>
+              </div>
+              <div class="form-group accountCreateForm">
+                  <input type="text" placeholder="Enter your mobile number" class="form-control" name="quantity" id="quantity" maxlength="10" />&nbsp;<span id="errmsg"></span>
+              </div>
+              <div class="form-group accountCreateForm" style="padding-bottom: 13px">
+                  <input type="text" placeholder="Enter Your Full Name" class="form-control" name="fullName" id="fullName" required>
+              </div>
+              <div class="form-group accountCreateForm" style="padding-bottom: 13px">
+                  <div class="form-row">
+                      <div class="col-9">
+                          <input type="password" class="form-control createAccountForm" placeholder="Set password" id="password" required>
+                      </div>
+                      <div class="col" style="padding-top: 8px;">
+                          <input type="button" class="form-control" value="Show" onclick="showPassword()">
+                      </div>
+                      <br><span style="padding-left:10px;  margin-bottom:15px;" class="text-muted">Minimum 8 characters</span><br>
+
+                  </div>
+                  <div class="form-group accountCreateForm" style="padding-bottom: 13px">
+                      <div class="form-row">
+                          <br><span class="text-muted">By filling this form, I agree to <a href="#" data-toggle="modal" data-target="#terms">Terms of Use</a></span>
+                      </div>
+                  </div>
+                  <button type="submit" class="btn btn-block rounded-0 pull-right" style="background:  #3392f3; color:seashell">Submit</button>
+                  <p class="text-mute">Already have a account?
+                      <a href="welcome.php" class="pull-left" for="InputPassword" id="labelForLogin" data-toggle="modal" data-target="#loginPop">Login Here</a>
+                  </p>
+              </div>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Login -->
+<div class="modal fade" id="loginPop" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="ModalTitle">Log in</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <form action="#" method="post" data-validate="parsley" style="padding: 30px">
+              <div class="form-group" style="padding-bottom: 13px">
+                  <label for="InputEmail1" id="labelForLogin">Email or 10 digit phone number</label>
+                  <input type="email" class="form-control form-control-sm" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter your email" required>
+              </div>
+              <div class="form-group" style="padding-bottom: 13px">
+                  <label for="InputPassword" id="labelForLogin">Password</label><a href="#" class="pull-right" for="InputPassword" id="labelForLogin">Forgot Password?</a>
+                  <input type="password" class="form-control form-control-sm" id="InputPassword" placeholder="Enter password" required>
+              </div>
+              <a href="#" class="pull-left" for="InputPassword" id="labelForLogin" data-toggle="modal" data-target="#exampleModalCenter">Register for new account</a>
+              <button type="submit" class="btn rounded-0 pull-right" style="background:  #3392f3; color:seashell">Submit</button>
+          </form>
+      </div>
+  </div>
+</div>
+
+
+  <!--Nav-->
+<ul class="topnav fixed-top">
+  <li><a class="active" href="11.html"><i class="fa fa-home"></i>HOME</a></li>
+  <li><a href="#about">ABOUT</a></li>
+  <li><a href="#news">SERVICES</a></li>
+  <li><a href="#contact">CONTACT</a></li>
+  <li class="right"><a href="#" data-toggle="modal" data-target="#login">
+    <svg width="20px" viewBox="0 0 20 20">
+      <defs>
+          <path d="M8.33333333,0 C3.73333333,0 0,3.73333333 0,8.33333333 C0,12.9333333 3.73333333,16.6666667 8.33333333,16.6666667 C12.9333333,16.6666667 16.6666667,12.9333333 16.6666667,8.33333333 C16.6666667,3.73333333 12.9333333,0 8.33333333,0 Z M8.33333333,2.5 C9.71666667,2.5 10.8333333,3.61666667 10.8333333,5 C10.8333333,6.38333333 9.71666667,7.5 8.33333333,7.5 C6.95,7.5 5.83333333,6.38333333 5.83333333,5 C5.83333333,3.61666667 6.95,2.5 8.33333333,2.5 Z M8.33333333,14.3333333 C6.25,14.3333333 4.40833333,13.2666667 3.33333333,11.65 C3.35833333,9.99166667 6.66666667,9.08333333 8.33333333,9.08333333 C9.99166667,9.08333333 13.3083333,9.99166667 13.3333333,11.65 C12.2583333,13.2666667 10.4166667,14.3333333 8.33333333,14.3333333 Z" id="path-user-icon"></path>
+      </defs>
+      <g id="Final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Assets" transform="translate(-154.000000, -60.000000)">
+              <g id="ic/account_circle" transform="translate(153.000000, 59.000000)">
+                  <g id="ic_account_circle_24px" transform="translate(1.666667, 1.666667)">
+                      <mask id="mask-user-icon" fill="white">
+                          <use xlink:href="#path-user-icon"></use>
+                      </mask>
+                      <g id="Shape" fill-rule="nonzero"></g>
+                      <g id="c/#FFFFFF/1" mask="url(#mask-user-icon)" fill="#FFFFFF">
+                          <g transform="translate(-1.666667, -1.666667)" id="Rectangle">
+                              <rect x="0" y="0" width="20" height="20"></rect>
+                          </g>
+                      </g>
+                  </g>
+              </g>
+          </g>
+      </g>
+  </svg>
+    LOGIN</a></li>
+</ul>
+
+
+<head style="padding-top: 750px;">
+
+  <!-- cursole-->
+  <div id="brandLogo">
+    <img src="images/travelp copy.png" alt="">
+  </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="image-cursole">
+            <img  class="d-block img-responsive mask flex-center rgba-black-strong" src="images/kasmir.jpg" alt="First slide" style="height:720px; width:100%; background:no-repeat; background:center; background-size: cover;">
+            <div class="black-overlay"></div>
+            <div class="carousel-caption d-none d-md-block text-center" style="padding-bottom: 270px;">
+              <h1>Second slide label</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Signup Now
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item mask flex-center rgba-black-strong">
+          <div class="image-cursole">
+            <img  class="d-block img-responsive" src="images/abcd.jpg" alt="First slide" style="height:720px; width:100%; background:no-repeat; background:center; background-size: cover;">
+            <div class="black-overlay"></div>
+            <div class="carousel-caption d-none d-md-block text-center" style="padding-bottom: 270px;">
+              <h1>Second slide label</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Signup Now
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="image-cursole">
+            <img  class="d-block img-responsive" src="images/l.jpg" alt="First slide" style="height:720px; width:100%; background:no-repeat; background:center; background-size: cover;">
+            <div class="black-overlay"></div>
+            <div class="carousel-caption d-none d-md-block text-center" style="padding-bottom: 270px;">
+              <h1>Second slide label</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Signup Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+</head>
+
+
+  <!-- body -->
+    <section id="about"class="features">
+        <h1>Dream Destinations</h1>
+        <div class="container">
+         <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-img">
+                        <img src="images/unnamed.jpg">
+                        <div class="price">
+                          <p>75$</p>    
+                        </div>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                    </div>
+                    <div class="feature-details">
+                        <h4>Nepal</h4>
+                        <p>very good palce to go.I love that place.This is very lovely place.The mountens are very beautyful,and there food are lovely.</p>
+                        <div>
+                            <span><i class="fa fa-map-marker">Nepal</i></span>
+                            <span><i class="fa fa-sun-o"></i>6 Days</span>
+                            <span><i class="fa fa-moon-o"></i>5 Night</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-img">
+                        <img src="images/ladak.jpg">
+                        <div class="price">
+                          <p>60$</p>    
+                        </div>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                    </div>
+                    <div class="feature-details">
+                        <h4>Lay Ladak</h4>
+                        <p>very good palce to go.I love that place.This is very lovely place.The mountens are very beautyful,and there food are lovely.</p>
+                        <div>
+                            <span><i class="fa fa-map-marker">Jammu&Kashmir</i></span>
+                            <span><i class="fa fa-sun-o"></i>4 Days</span>
+                            <span><i class="fa fa-moon-o"></i>3 Night</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-img">
+                        <img src="images/oyo.jpg">
+                        <div class="price">
+                          <p>80$</p>    
+                        </div>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                        </div>
+                    </div>
+                    <div class="feature-details">
+                        <h4>Kullu Manali</h4>
+                        <p> i love india very good palce to go.I love that place.This is very lovely country.The mountens are very beautyful,and there food are lovely.</p>
+                        <div>
+                            <span><i class="fa fa-map-marker">Himachal</i></span>
+                            <span><i class="fa fa-sun-o"></i>9 Days</span>
+                            <span><i class="fa fa-moon-o"></i>8 Night</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+        </div>
+    </section>
+    <section class="gallery">
+        <h1>Dream Gallery</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                  <div class="gallery-box">
+                      <img src="images/la.jpg">
+                      <h4>Sakkim</h4>
+                  </div>  
+                </div>
+                <div class="col-md-3">
+                    <div class="gallery-box">
+                        <img src="images/day3paradise.jpg">
+                        <h4>Maldvies</h4>
+                    </div>  
+                  </div>
+                  <div class="col-md-3">
+                    <div class="gallery-box">
+                        <img src="images/sandakphu_dawn.jpg">
+                        <h4>Darjiling</h4>
+                    </div>  
+                  </div>
+                  <div class="col-md-3">
+                    <div class="gallery-box">
+                        <img src="images/l.jpg">
+                        <h4>London</h4>
+                    </div>  
+                  </div>
+            </div>
+        </div>
+    </section>
+    <section class="banner">
+        <div class="banner-highlights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Get 30% off on sakkim trip </h2>
+                        <p>Book your trip before 31st march and avail 30% flat discount.Book your dream destination now</p>
+                        <div class="col-md-4">
+                            <button type="button" class="booking-btn"> Book Now </button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="offer">
+        <div class="gu-offer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Get 40% off on your Paris trip</h2>
+                        <p>Book your trip before 31st march and avail 40% flat discount.Book your dream destination now</p>
+                        <div class="col-md-4">
+                            <button type="button" class="booking-btn"> Book Now </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="darjiling">
+        <div class="darjiling-gro">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Get 45% off on your Gangtok trip</h2>
+                        <p>Book your trip before 31st march and avail 45% flat discount.Book your dream destination now</p>
+                        <div class="col-md-4">
+                            <button type="button" class="booking-btn"> Book Now </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="gangtok">
+        <div class="gangtok-but">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Get 50% off on your Darjiling trip</h2>
+                        <p>Book your trip before 31st march and avail 50% flat discount.Book your dream destination now</p>
+                        <div class="col-md-4">
+                            <button type="button" class="booking-btn"> Book Now </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="users-feedback">
+        <h1>Users Review</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="users-review">
+                      <p>I love this wepside.There was so mane offers.And there are so mane placeses to go outting in holiday specially in India.</p>
+                      <h5>Bebe Rexha</h5>
+                      <small>Los Angeles</small>
+                     </div>
+                     <img src="images/Bebe-Rexha.jpg">
+                </div>
+                <div class="col-md-4">
+                    <div class="users-review">
+                        <p>I love this wepside.And there are so mane placeses to go outting in holiday specially in India.I love my india.</p>
+                        <h5>Shruti Haassan</h5>
+                        <small>Mumbai</small>
+                       </div>
+                       <img src="images/Khtkce.jpg">
+                </div>
+                <div class="col-md-4">
+                    <div class="users-review">
+                        <p>I love this wepside.I love to go hills in holiday.And there are so mane placeses to go outting in holiday specially in India.</p>
+                        <h5>Urvashi Rautela</h5>
+                        <small>Mumbai</small>
+                       </div>
+                       <img src="images/urvashi.jpg">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="images/travelp copy.png" class="footer-logo">
+                    <p>@ For get the more offer and more about your Dream Trip visit on our wepside http://www.dreamtrip.com @</p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Features</h4>
+                    <p>Deals & Offers</p>
+                    <p>Ctomeros Reviews</p>
+                    <p>Cancelation Policy</p>
+                </div>
+                <div class="col-md-3">
+                    <h4>Contact Us@</h4>
+                    <p><i class="fa fa-phone-square"></i>+919954421454</p>
+                    <p><i class="fa fa-envelope"></i>www.xyz000@gmail.com</p>
+                    <p><i class="fa fa-home"></i>Netaji,Road Siliguri</p>
+                </div>
+                <div class="col-md-3">
+                    <h4>  Follow Us On Social Media</h4>
+                    <p><i class="fa fa-facebook-official"></i>www.xyz/facebook.page.com</p>
+                    <p><i class="fa fa-youtube-play"></i>www.xyz0youtube.com</p>
+                    <p><i class="fa fa-twitter"></i>@xyz</p>
+                </div>
+            </div><hr>
+            <p class="copyright">This wepside is created<i class="fa fa-heart"></i>by @Aniket Barman</p> 
+        </div>
+    </section>
+
+
+
+    <!-- Modal -->
+    
+</body>
+</html>
